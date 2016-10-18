@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="Projet">
+		<class>metier.entities.Facture</class>
+		<class>metier.entities.FacturePK</class>
+		<class>metier.entities.Panier</class>
+		<class>metier.entities.PanierHasDvd</class>
+		<class>metier.entities.PanierHasDvdPK</class>
+		<class>metier.entities.Realisateur</class>
+		<class>metier.entities.Auteur</class>
+		<class>metier.entities.Dvd</class>
+		<class>metier.entities.Client</class>
+	</persistence-unit>
+</persistence>
