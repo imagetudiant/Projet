@@ -18,7 +18,7 @@ public class DvdEJBImpl implements DvdLocal, DvdRemote {
 	@PersistenceContext(unitName="ProjetDvd")
 	private EntityManager em;
 	@Override
-	public Dvd searchDvd(int id) {
+	public Dvd getDvd(int id) {
 		Dvd d = em.find(Dvd.class, id);
 		if(d==null) throw new RuntimeException("Dvd introuvable");
 		return null;
@@ -48,7 +48,7 @@ public class DvdEJBImpl implements DvdLocal, DvdRemote {
 	
 	@Override
 	public void editDvd(int id, String titre, double prix) {
-		Dvd d= searchDvd(id);
+		Dvd d= getDvd(id);
 		d.setTitre(titre);
 		BigDecimal prixBD = BigDecimal.valueOf(prix);
 		d.setPrix(prixBD);
