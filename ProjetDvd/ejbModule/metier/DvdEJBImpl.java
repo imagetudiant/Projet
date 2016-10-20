@@ -6,21 +6,21 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import metier.entities.Dvd;
 
-@Stateful
+@Stateless(name="DVD")
 public class DvdEJBImpl implements DvdLocal, DvdRemote {
-	@PersistenceContext
+	@PersistenceContext(unitName="ProjetDvd")
 	private EntityManager em;
 	@Override
 	public Dvd searchDvd(int id) {
 		Dvd d = em.find(Dvd.class, id);
 		if(d==null) throw new RuntimeException("Dvd introuvable");
-		// TODO Auto-generated method stub
 		return null;
 	}
 
