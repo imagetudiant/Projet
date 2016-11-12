@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,7 +26,13 @@ public class DvdEJBImpl implements DvdLocal, DvdRemote {
 	@Override
 	public List<Dvd> listDvd() {
 		Query req =em.createQuery("select d from Dvd d");
-		return req.getResultList();
+		List<Dvd> result = new ArrayList<Dvd>();
+		List<?> resultRaw = req.getResultList();
+		Iterator <?> it = resultRaw.iterator();
+		while (it.hasNext()) {
+			result.add((Dvd) it.next());
+		}
+		return result;
 		}
 	public List<Dvd> searchDvd(String titreRech) {
 		List<Dvd> result = new ArrayList<Dvd>();

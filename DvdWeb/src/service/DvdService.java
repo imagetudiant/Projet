@@ -8,7 +8,7 @@ import javax.jws.WebService;
 import metier.DvdLocal;
 import metier.entities.Dvd;
 @WebService
-public class DvdServıce {
+public class DvdService {
 	@EJB
 	private DvdLocal metier;
 
