@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 @NamedQuery(name="Dvd.findAll", query="SELECT d FROM Dvd d")
 public class Dvd implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -27,11 +28,11 @@ public class Dvd implements Serializable {
 	private String titre;
 
 	//bi-directional many-to-one association to Auteur
-	@ManyToOne
+	@ManyToOne(targetEntity=Auteur.class)
 	private Auteur auteur;
 
 	//bi-directional many-to-one association to Realisateur
-	@ManyToOne
+	@ManyToOne(targetEntity=Realisateur.class)
 	private Realisateur realisateur;
 
 	public Dvd() {

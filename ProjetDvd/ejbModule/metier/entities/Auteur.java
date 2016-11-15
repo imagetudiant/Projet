@@ -2,7 +2,6 @@ package metier.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -15,19 +14,20 @@ public class Auteur implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
 	private String nom;
 
 	private String prenom;
 
-	//bi-directional many-to-one association to Dvd
-	@OneToMany(mappedBy="auteur")
-	private List<Dvd> dvds;
-
 	public Auteur() {
 	}
+	
+	public Auteur(String nom, String prenom) {
+		this.nom = nom;
+		this.prenom = prenom;
+ 	}
 
 	public int getId() {
 		return this.id;
@@ -52,27 +52,4 @@ public class Auteur implements Serializable {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-
-	public List<Dvd> getDvds() {
-		return this.dvds;
-	}
-
-	public void setDvds(List<Dvd> dvds) {
-		this.dvds = dvds;
-	}
-
-	public Dvd addDvd(Dvd dvd) {
-		getDvds().add(dvd);
-		dvd.setAuteur(this);
-
-		return dvd;
-	}
-
-	public Dvd removeDvd(Dvd dvd) {
-		getDvds().remove(dvd);
-		dvd.setAuteur(null);
-
-		return dvd;
-	}
-
 }

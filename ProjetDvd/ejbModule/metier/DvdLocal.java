@@ -39,7 +39,7 @@ public interface DvdLocal {
 	
 	//public void creerDvd(String categorie, double prix, double stock, String titre, int auteur_id, int realisateur_id);
 
-
+	
 	public void setRealisateur(int id_realisateur);
 	public void setAuteur(int id_auteur);
 	public void removeAll();
