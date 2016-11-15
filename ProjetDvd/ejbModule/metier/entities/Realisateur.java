@@ -14,7 +14,7 @@ public class Realisateur implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
 	private String nom;
@@ -22,6 +22,11 @@ public class Realisateur implements Serializable {
 	private String prenom;
 
 	public Realisateur() {
+	}
+	
+	public Realisateur(String nom, String prenom) {
+		this.nom = nom;
+		this.prenom = prenom;
 	}
 
 	public int getId() {

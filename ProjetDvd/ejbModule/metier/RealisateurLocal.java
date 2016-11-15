@@ -36,4 +36,16 @@ public interface RealisateurLocal {
 	 * @param prenom le nouveau prenom du réalisateur
 	 */
 	public void editRealisateur(int id, String nom, String prenom);
+	
+	/**
+	 * Ajoute un réalisateur.
+	 * @param nom le nom du réalisateur à ajouter
+	 * @param prenom le prénom du réalisateur à ajouter
+	 */
+	public void addRealisateur(String nom, String prenom);
+	
+	/**
+	 * Supprime tous les réalisateurs.
+	 */
+	public void removeAll();
 }
