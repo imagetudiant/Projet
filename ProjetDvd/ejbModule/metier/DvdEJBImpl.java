@@ -35,7 +35,7 @@ public class DvdEJBImpl implements DvdLocal, DvdRemote {
 
 	@Override
 	public List<Dvd> listDvd() {
-		Query req =em.createQuery("select d from Dvd d");
+		Query req =em.createNamedQuery("Dvd.findAll");
 		List<Dvd> result = new ArrayList<Dvd>();
 		List<?> resultRaw = req.getResultList();
 		Iterator <?> it = resultRaw.iterator();
@@ -59,6 +59,14 @@ public class DvdEJBImpl implements DvdLocal, DvdRemote {
 			
 		}
 		return result;
+	}
+	
+	@Override
+	public void creerDvd(String categorie, double prix, int stock, String titre, int auteur_id, int realisateur_id) {
+		Auteur a = em.find(Auteur.class, auteur_id);
+		Realisateur r = em.find(Realisateur.class, realisateur_id);
+		Dvd d = new Dvd(categorie,prix,stock,titre,a,r);
+		addDvd(d);
 	}
 
 	public void setRealisateur(int id_realisateur){
@@ -97,8 +105,14 @@ public class DvdEJBImpl implements DvdLocal, DvdRemote {
 			 }
 		 }
 	}
+
+	@Override
+	public void setTitre(int id, String titre) {
+		Dvd d = getDvd(id);
+		d.setTitre(titre);
+		
+	}
 	
-	//public void setdvdtitre(int id, String titre);
 	//public void setdvd (int id);
 	//public List<Dvd> getdvdbyauthor(long id_auteur) {}
 	//public List<Dvd> getdvdbyrealisateur(long id_realisateur) {}

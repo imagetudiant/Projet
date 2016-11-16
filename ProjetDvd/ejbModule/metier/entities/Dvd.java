@@ -10,7 +10,10 @@ import java.math.BigDecimal;
  * 
  */
 @Entity
-@NamedQuery(name="Dvd.findAll", query="SELECT d FROM Dvd d")
+@NamedQueries({
+	@NamedQuery(name="Dvd.findAll", query="SELECT d FROM Dvd d"),
+	@NamedQuery(name="Dvd.findById", query = "SELECT d FROM Dvd d WHERE d.id = :id"),
+})
 public class Dvd implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -36,6 +39,15 @@ public class Dvd implements Serializable {
 	private Realisateur realisateur;
 
 	public Dvd() {
+	}
+	
+	public Dvd(String categorie, double prix, int stock, String titre, Auteur a, Realisateur r) {
+		this.categorie = categorie;
+		this.prix = BigDecimal.valueOf(prix);
+		this.stock = stock;
+		this.titre = titre;
+		this.auteur = a;
+		this.realisateur = r;
 	}
 
 	public int getId() {

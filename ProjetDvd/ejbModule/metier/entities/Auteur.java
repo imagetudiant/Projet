@@ -9,7 +9,10 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@NamedQuery(name="Auteur.findAll", query="SELECT a FROM Auteur a")
+@NamedQueries({
+	@NamedQuery(name="Auteur.findAll", query="SELECT a FROM Auteur a"),
+	@NamedQuery(name="Auteur.findById", query = "SELECT a FROM Auteur a where a.id = :id"),
+})
 public class Auteur implements Serializable {
 	private static final long serialVersionUID = 1L;
 
