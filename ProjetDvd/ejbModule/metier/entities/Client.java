@@ -19,7 +19,7 @@ public class Client implements Serializable {
 	private String email;
 
 	private String adresse;
-
+	
 	@Temporal(TemporalType.DATE)
 	@Column(name="date_de_naissance")
 	private Date dateDeNaissance;
