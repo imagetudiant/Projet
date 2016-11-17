@@ -4,17 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>DVD Store</title>
+<title>Connexion</title>
 </head>
 <body>
-	<h1>DVD Store</h1>
-	<p>Connectez-vous pour accéder à votre store</p>
-	<form method="get" action="connexion.jsp">
-		<input type="submit" value="Connexion">
-	</form>
-	<form method="get" action="inscription.jsp">
-		<input type="submit" value="Inscription">
-	</form>
-	
+	<h1>Connectez-vous</h1>
+	<form action = "Connexion" method = "post">
+		<input type="text" name="email" value="E-mail"><br/>
+		<input type="password" name="password" value="Mot de passe"><br/>
+  		<input type="submit" value="Connexion">
+	</form> 
 </body>
 </html>

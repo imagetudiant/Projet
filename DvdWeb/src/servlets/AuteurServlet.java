@@ -11,31 +11,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import metier.AuteurRemote;
-import metier.DvdRemote;
-import metier.RealisateurRemote;
+import metier.AuteurLocal;
 import metier.entities.Auteur;
-import metier.entities.Dvd;
-import metier.entities.Realisateur;
 
 /**
- * Servlet implementation class Liste
+ * Servlet implementation class AuteurServlet
  */
-@WebServlet("/Liste")
-public class Liste extends HttpServlet {
+@WebServlet("/Auteur")
+public class AuteurServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@EJB
-	private DvdRemote dvdBean;
-	@EJB
-	private AuteurRemote auteurBean;
-	@EJB
-	private RealisateurRemote realisateurBean;
+	private AuteurLocal auteurBean;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Liste() {
+    public AuteurServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,34 +36,23 @@ public class Liste extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String choix = request.getParameter("name");
+
 		RequestDispatcher dispatcher;
-		if (choix.equals("dvd")) {
-			List <Dvd> liste = dvdBean.listDvd();
-			dispatcher = request.getRequestDispatcher("dvd.jsp");
-			request.setAttribute("liste", liste); 
-			if (liste != null) {
-				if (!liste.isEmpty()) {
-					request.setAttribute("titre", liste.get(0).getTitre());
-				}
-			}
-		}
-		else if (choix.equals("auteur")) {
-			List <Auteur> liste = auteurBean.listAuteur();
+		String choix = request.getParameter("action");
+		if (choix.equals("search")) {
+			String nom = request.getParameter("nom");
+			List <Auteur> liste = auteurBean.searchAuteur(nom);
 			dispatcher = request.getRequestDispatcher("auteur.jsp");
-			request.setAttribute("liste", liste);
 			if (liste != null) {
 				if (!liste.isEmpty()) {
 					request.setAttribute("nom", liste.get(0).getNom());
-					request.setAttribute("prenom", liste.get(0).getPrenom());
 				}
 			}
 		}
-		else if (choix.equals("realisateur")) {
-			List <Realisateur> liste = realisateurBean.listRealisateur();
-			dispatcher = request.getRequestDispatcher("realisateur.jsp");
-			request.setAttribute("liste", liste);
+		else if (choix.equals("list")) {
+			List <Auteur> liste = auteurBean.listAuteur();
+			dispatcher = request.getRequestDispatcher("auteur.jsp");
+			//request.setAttribute("liste", liste); 
 			if (liste != null) {
 				if (!liste.isEmpty()) {
 					request.setAttribute("nom", liste.get(0).getNom());

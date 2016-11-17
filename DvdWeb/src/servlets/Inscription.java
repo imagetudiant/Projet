@@ -1,33 +1,30 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.ejb.EJB;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import metier.DvdLocal;
-import metier.entities.Dvd;
+import metier.ClientLocal;
 
 /**
- * Servlet implementation class SearchDvd
+ * Servlet implementation class Inscription
  */
-@WebServlet("/SearchDvd")
-public class SearchDvd extends HttpServlet {
+@WebServlet("/Inscription")
+public class Inscription extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@EJB
-	private DvdLocal dvdBean;
+	private ClientLocal clientBean;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchDvd() {
+    public Inscription() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,18 +33,31 @@ public class SearchDvd extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String titre = request.getParameter("titre");
-		RequestDispatcher dispatcher;
-		List <Dvd> d = dvdBean.searchDvd(titre);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		//Récupération des paramètres
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		String password2 = request.getParameter("password2");
+		String nom = request.getParameter("nom");
+		String prenom = request.getParameter("prenom");
+		String adresse = request.getParameter("adresse");
+		String date = request.getParameter("date");
+		String sexe = request.getParameter("sexe");
+		
+		//Vérification des paramètres
+		
+		//Inscription du client
+		
+		//Redirection vers l'accueil
+		response.sendRedirect("accueil.jsp");
+		
 	}
 
 }
