@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.ejb.EJB;
@@ -52,14 +53,19 @@ public class Inscription extends HttpServlet {
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
 		String adresse = request.getParameter("adresse");
-		String jour = request.getParameter("jour");
-		String mois = request.getParameter("mois");
-		String annee = request.getParameter("annee");
+		String jourS = request.getParameter("jour");
+		String moisS = request.getParameter("mois");
+		String anneeS = request.getParameter("annee");
 		String sexe = request.getParameter("sexe");
 		
 		//Vérification des paramètres
 		RequestDispatcher dispatcher = request.getRequestDispatcher("erreur.jsp");
 		String error = "";
+		if (email.isEmpty()) {
+			error = "Veuillez saisir votre adresse e-mail";
+			request.setAttribute("error", error);
+			dispatcher.forward(request, response);		
+		}
 		if (email.isEmpty()) {
 			error = "Veuillez saisir votre adresse e-mail";
 			request.setAttribute("error", error);
@@ -95,18 +101,36 @@ public class Inscription extends HttpServlet {
 			request.setAttribute("error", error);
 			dispatcher.forward(request, response);		
 		}
-		if (jour.isEmpty()) {
+		if (jourS.isEmpty()) {
 			error = "Veuillez remplir votre jour de naissance";
 			request.setAttribute("error", error);
 			dispatcher.forward(request, response);		
 		}
-		if (mois.isEmpty()) {
+		int jour = Integer.parseInt(jourS);
+		if (jour < 1 || jour > 31) {
+			error = "Votre jour doit être compris entre 1 et 31";
+			request.setAttribute("error", error);
+			dispatcher.forward(request, response);		
+		}
+		if (moisS.isEmpty()) {
 			error = "Veuillez remplir votre mois de naissance";
 			request.setAttribute("error", error);
 			dispatcher.forward(request, response);		
 		}
-		if (annee.isEmpty()) {
+		int mois = Integer.parseInt(moisS);
+		if (mois < 1 || mois > 12) {
+			error = "Votre mois doit être compris entre 1 et 12";
+			request.setAttribute("error", error);
+			dispatcher.forward(request, response);		
+		}
+		if (anneeS.isEmpty()) {
 			error = "Veuillez remplir votre année de naissance";
+			request.setAttribute("error", error);
+			dispatcher.forward(request, response);		
+		}
+		int annee = Integer.parseInt(anneeS);
+		if (annee < 1900 || annee > Calendar.getInstance().get(Calendar.YEAR)) {
+			error = "Votre année de naissance doit être comprise entre 1900 et " + Calendar.getInstance().get(Calendar.YEAR);
 			request.setAttribute("error", error);
 			dispatcher.forward(request, response);		
 		}
@@ -117,12 +141,13 @@ public class Inscription extends HttpServlet {
 		}
 		
 		//Inscription du client
-		String date = jour + "/" + mois + "/" + annee;
+		String date = jourS + "/" + moisS + "/" + anneeS;
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		Date d = new Date();
 		try {
-			Date d = formatter.parse(date);
+			d = formatter.parse(date);
+			clientBean.addClient(email, password, nom, prenom, adresse, d, sexe);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

@@ -8,6 +8,7 @@
 </head>
 <body>
 	<h1>Dvd Store</h1>
+	<p><a href="profil.jsp">Profil</a></p>
 	<div>
 		<p><a href = "/DvdWeb/Dvd?action=list">Voir les dvds</a><p>
 		<p><a href = "/DvdWeb/Auteur?action=list">Voir les auteurs</a><p>
