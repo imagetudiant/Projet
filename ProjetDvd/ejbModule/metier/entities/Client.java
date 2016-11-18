@@ -38,6 +38,16 @@ public class Client implements Serializable {
 
 	public Client() {
 	}
+	
+	public Client(String email, String password, String nom, String prenom, String adresse, Date date, String sexe){
+		this.email = email;
+		this.motDePasse = password;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.dateDeNaissance = date;
+		this.sexe = sexe;
+	}
 
 	public String getEmail() {
 		return this.email;
