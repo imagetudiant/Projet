@@ -42,13 +42,18 @@ public class Connexion extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
+		if (email.isEmpty()) {
+			response.sendRedirect("connexion.jsp");
+		}
+		if (password.isEmpty()) {
+			response.sendRedirect("connexion.jsp");
+		}
 		boolean auth = clientBean.IsPassword(password, email);
 		if (auth) {
 			response.sendRedirect("accueil.jsp");
 		}
 		else {
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("connexion.jsp");
 		}
 	}
-
 }

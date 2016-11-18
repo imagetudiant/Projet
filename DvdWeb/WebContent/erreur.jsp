@@ -4,16 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Connexion</title>
+<title>DVD Store - Erreur</title>
 </head>
 <body>
-	<h1>Connectez-vous</h1>
-	<form action = "Connexion" method = "post">
-		E-mail <br/>
-		<input type="text" name="email" value=""><br/>
-		Mot de passe <br/>
-		<input type="password" name="password" value=""><br/>
-  		<input type="submit" value="Connexion">
-	</form> 
+	<h1>Erreur</h1>
+	<p>Une erreur est survenue lors du traitement de votre requête.</p>
+	<%
+		String error = (String) (request.getAttribute("error"));
+	%> 
+	<p><%= error %></p>
 </body>
 </html>

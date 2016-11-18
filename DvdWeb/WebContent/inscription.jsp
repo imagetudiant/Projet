@@ -15,12 +15,14 @@
 		<input type="text" name="nom" value=""><br/>
 		Prénom<br/>
 		<input type="text" name="prenom" value=""><br/>
-		<input type="radio" name="sexe" value="Homme" checked>Homme<br>
-  		<input type="radio" name="sexe" value="Femme">Femme<br>
+		<input type="radio" name="sexe" value="Homme" checked>Homme
+  		<input type="radio" name="sexe" value="Femme">Femme<br/>
   		Adresse<br/>
 		<input type="text" name="adresse" value=""><br/>
-		Date de naissance<br/>
-		<input type="text" name="date" value=""><br/>
+		Date de naissance (DD/MM/AAAA)<br/>
+		<input type="text" name="jour" value=""><br/>
+		<input type="text" name="mois" value=""><br/>
+		<input type="text" name="année" value=""><br/>
 		Mot de passe<br/>
 		<input type="password" name="password" value=""><br/>
 		Confirmez votre mot de passe<br/>
