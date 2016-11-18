@@ -38,5 +38,7 @@ public interface ClientLocal {
 	public String getSexe();
 
 	public void setSexe(String sexe);
+	
+	public boolean IsClient(String email);
 
 }

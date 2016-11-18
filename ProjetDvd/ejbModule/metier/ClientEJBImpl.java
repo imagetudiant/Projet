@@ -1,15 +1,9 @@
 package metier;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
 import metier.entities.Client;
 
 
@@ -28,6 +22,17 @@ public class ClientEJBImpl implements ClientLocal, ClientRemote {
 		return c;
 	}
 
+	@Override
+	public boolean IsClient(String email) {
+		Client c = em.find(Client.class, email);
+		if(c == null){
+			return false;
+		}
+		else { 
+			return true;
+		}
+		
+	}
 	@Override
 	public boolean IsPassword(String password, String email) {
 		Client c = getClient(email);
