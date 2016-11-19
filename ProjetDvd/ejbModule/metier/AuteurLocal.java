@@ -36,4 +36,16 @@ public interface AuteurLocal {
 	 * @param prenom le nouveau prenom de l'auteur
 	 */
 	public void editAuteur(int id, String nom, String prenom);
+	
+	/**
+	 * Ajoute un auteur.
+	 * @param nom le nom de l'auteur à ajouter
+	 * @param prenom le prénom de l'auteur à ajouter
+	 */
+	public void addAuteur(String nom, String prenom);
+	
+	/**
+	 * Supprime tous les auteurs.
+	 */
+	public void removeAll();
 }
