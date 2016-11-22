@@ -4,7 +4,7 @@
 	<comment></comment>
 	<projects>
 		<project>DvdWeb</project>
-		<project>Projet1</project>
+		<project>ProjetDvd</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
