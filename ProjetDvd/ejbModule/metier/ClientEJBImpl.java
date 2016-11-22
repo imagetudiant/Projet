@@ -21,7 +21,22 @@ public class ClientEJBImpl implements ClientLocal, ClientRemote {
 		if(c == null) throw new RuntimeException("email error");
 		return c;
 	}
-
+    
+	@Override 
+	
+	public void addClient(String email, String password, String nom, String prenom, String adresse, Date date, String sexe, int panierId){
+		    Client c = new Client(email, password, nom, prenom, adresse, date, sexe, panierId);
+		    em.merge(c);		
+	}
+	
+	/*
+	public int addClient(String email, String password, String nom, String prenom, String adresse, Date date, String sexe){
+		    Client c = new Client(email, password, nom, prenom, adresse, date, sexe, panierId);
+		    em.merge(c);
+		    return c.getId();		
+	}
+	 */
+	
 	@Override
 	public boolean IsClient(String email) {
 		Client c = em.find(Client.class, email);

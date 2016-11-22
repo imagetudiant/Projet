@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import metier.ClientLocal;
+import metier.PanierLocal;
 
 /**
  * Servlet implementation class Inscription
@@ -25,6 +26,8 @@ public class Inscription extends HttpServlet {
 	
 	@EJB
 	private ClientLocal clientBean;
+	@EJB
+	private PanierLocal panierBean;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -146,7 +149,12 @@ public class Inscription extends HttpServlet {
 		Date d = new Date();
 		try {
 			d = formatter.parse(date);
-			clientBean.addClient(email, password, nom, prenom, adresse, d, sexe);
+			int panierId = panierBean.addPanier();
+			clientBean.addClient(email, password, nom, prenom, adresse, d, sexe, panierId);
+			/*
+			int clientId = clientBean.addClient(email, password, nom, prenom, adresse, d, sexe);
+			panierId = panierBean.addPanier(clientId);
+			 */
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

@@ -19,7 +19,7 @@ public interface PanierLocal {
 	 */
 	public List<PanierHasDvdPK> Consulter_Panier(Panier p);
 	/**
-	 * permet d'ajouter unn dvd √† un panier
+	 * permet d'ajouter un dvd ‡† un panier
 	 * @param p
 	 * @param d
 	 */
@@ -36,12 +36,21 @@ public interface PanierLocal {
 	 * @param d
 	 * @param quantit√©
 	 */
-	public void Fixer_quantit√©(PanierHasDvdPK p, Dvd d, int quantit√©);
+	public void Fixer_quantite(PanierHasDvdPK p, Dvd d, int quantite);
 	/**
 	 * calcule la somme totale des prix des diff√©rents dvds dans un panier
 	 * @param p
 	 */
-	void Somme_totale(Panier p);
+	public void Somme_totale(Panier p);
+	
+	/**
+	 * Ajoute un panier ‡ la base de donnÈes.
+	 */
+	public int addPanier();
+	
+	/*
+	public void addPanier(int clientId);
+	*/
 
 
 }

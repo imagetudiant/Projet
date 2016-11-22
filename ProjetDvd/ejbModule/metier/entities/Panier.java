@@ -19,8 +19,14 @@ public class Panier implements Serializable {
 
 	@Column(name="nb_produits")
 	private int nbProduits;
+	
+	/*
+	@Column(name="client_id")
+	private int clientId;
+	*/
 
 	public Panier() {
+		nbProduits = 0;
 	}
 
 	public int getId() {
@@ -38,5 +44,15 @@ public class Panier implements Serializable {
 	public void setNbProduits(int nbProduits) {
 		this.nbProduits = nbProduits;
 	}
+	
+	/*
+	public int getClientId() {
+		return this.clientId;
+	}
+
+	public void setClientId(int clientId) {
+		this.clientId = clientId;
+	}
+	*/
 
 }

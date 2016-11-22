@@ -15,7 +15,7 @@ public class Client implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	//@GeneratedValue(strategy=GenerationType.AUTO)
 	private String email;
 
 	private String adresse;
@@ -38,6 +38,29 @@ public class Client implements Serializable {
 
 	public Client() {
 	}
+	
+	public Client(String email, String password, String nom, String prenom, String adresse, Date date, String sexe, int panierId){
+		this.email = email;
+		this.motDePasse = password;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.dateDeNaissance = date;
+		this.sexe = sexe;
+		this.panierId = panierId;
+	}
+	
+	/*
+	 	public Client(String email, String password, String nom, String prenom, String adresse, Date date, String sexe){
+		this.email = email;
+		this.motDePasse = password;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.dateDeNaissance = date;
+		this.sexe = sexe;
+	}
+	 */
 
 	public String getEmail() {
 		return this.email;

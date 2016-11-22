@@ -53,11 +53,11 @@ public class PanierEJBImpl implements PanierRemote, PanierLocal{
 	}
 
 	@Override
-	public void Fixer_quantité(PanierHasDvdPK p ,Dvd d, int quantité) {
+	public void Fixer_quantite(PanierHasDvdPK p ,Dvd d, int quantite) {
 		int id = p.getDvdId();
 		Panier panier = em.find(Panier.class, p.getPanierId());
 		if (id == d.getId()){
-			panier.setNbProduits(quantité);
+			panier.setNbProduits(quantite);
 		}
 		em.persist(p);
 
@@ -74,6 +74,22 @@ public class PanierEJBImpl implements PanierRemote, PanierLocal{
 		}
 		
 	}
+
+
+	@Override
+	public int addPanier() {
+		Panier p = new Panier();
+		em.merge(p);
+		return p.getId();
+	}
+	
+	/*
+	@Override
+	public void addPanier(int clientId) {
+		Panier p = new Panier(clientId);
+		em.merge(p);
+	}
+	 */
 
 	
 }

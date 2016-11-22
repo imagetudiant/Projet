@@ -40,5 +40,10 @@ public interface ClientRemote {
 	public void setSexe(String sexe);
 	
 	public boolean IsClient(String email);
+	
+	public void addClient(String email, String password, String nom, String prenom, String adresse, Date date, String sexe, int panierId);
 
+	/*
+	public int addClient(String email, String password, String nom, String prenom, String adresse, Date date, String sexe);
+	*/
 }

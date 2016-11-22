@@ -10,5 +10,8 @@
 		<class>metier.entities.PanierHasDvd</class>
 		<class>metier.entities.PanierHasDvdPK</class>
 		<class>metier.entities.Realisateur</class>
+		<properties>
+			<property name="hibernate.id.new_generator_mappings" value="false"/>
+		</properties>
 	</persistence-unit>
 </persistence>

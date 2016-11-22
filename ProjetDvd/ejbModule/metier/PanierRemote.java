@@ -37,11 +37,21 @@ public interface PanierRemote {
 	 * @param d
 	 * @param quantité
 	 */
-	public void Fixer_quantité(PanierHasDvdPK p, Dvd d, int quantité);
+	public void Fixer_quantite(PanierHasDvdPK p, Dvd d, int quantite);
 	/**
 	 * calcule la somme totale des prix des différents dvds dans un panier
 	 * @param p
 	 */
-	void Somme_totale(Panier p);
+	public void Somme_totale(Panier p);
+	
+	/**
+	 * Ajoute un panier � la base de donn�es.
+	 */
+	public int addPanier();
+	
+	/*
+	public void addPanier(int clientId);
+	*/
+	
 
 }
