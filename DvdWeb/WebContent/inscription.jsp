@@ -22,7 +22,7 @@
 		Date de naissance (DD/MM/AAAA)<br/>
 		<input type="text" name="jour" value=""><br/>
 		<input type="text" name="mois" value=""><br/>
-		<input type="text" name="année" value=""><br/>
+		<input type="text" name="annee" value=""><br/>
 		Mot de passe<br/>
 		<input type="password" name="password" value=""><br/>
 		Confirmez votre mot de passe<br/>
