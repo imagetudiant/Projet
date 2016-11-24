@@ -27,7 +27,7 @@ public class PanierEJBImpl implements PanierRemote, PanierLocal{
 		List<?> resultRaw = req.getResultList();
 		Iterator <?> it = resultRaw.iterator();
 		while (it.hasNext()) {
-			if(p.getId() == ((PanierHasDvdPK) it.next()).getPanierId()){
+			if(p.getEmail().equals(((PanierHasDvdPK) it.next()).getPanierId())){
 				result.add((PanierHasDvdPK) it.next());
 			}
 			
@@ -39,7 +39,7 @@ public class PanierEJBImpl implements PanierRemote, PanierLocal{
 	@Override
 	public void Ajout_Dvd(Panier p, Dvd d) {
 		PanierHasDvdPK panier = new PanierHasDvdPK();
-		panier.setPanierId(p.getId());
+		panier.setPanierId(p.getEmail());
 		panier.setDvdId(d.getId());
 		em.persist(panier);
 	}

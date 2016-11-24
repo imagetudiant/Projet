@@ -12,6 +12,7 @@
 		<class>metier.entities.Realisateur</class>
 		<properties>
 			<property name="hibernate.id.new_generator_mappings" value="false"/>
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
 		</properties>
 	</persistence-unit>
 </persistence>

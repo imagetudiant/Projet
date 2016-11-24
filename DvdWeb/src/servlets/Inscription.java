@@ -89,6 +89,11 @@ public class Inscription extends HttpServlet {
 			request.setAttribute("error", error);
 			dispatcher.forward(request, response);		
 		}
+		if (!password2.equals(password)) {
+			error = "Les mots de passe saisis ne sont pas identiques";
+			request.setAttribute("error", error);
+			dispatcher.forward(request, response);		
+		}
 		if (nom.isEmpty()) {
 			error = "Veuillez rentrer votre nom";
 			request.setAttribute("error", error);

@@ -33,16 +33,6 @@ public class Panier implements Serializable {
 		this.email = email;
 	}
 	
-	
-
-	/*public int getId() {
-		return this.id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-*/
 	public int getNbProduits() {
 		return this.nbProduits;
 	}
@@ -52,7 +42,7 @@ public class Panier implements Serializable {
 	}
 	
 	
-	public String getemail() {
+	public String getEmail() {
 		return this.email;
 	}
 
