@@ -149,12 +149,12 @@ public class Inscription extends HttpServlet {
 		Date d = new Date();
 		try {
 			d = formatter.parse(date);
-			int panierId = panierBean.addPanier();
-			clientBean.addClient(email, password, nom, prenom, adresse, d, sexe, panierId);
-			/*
-			int clientId = clientBean.addClient(email, password, nom, prenom, adresse, d, sexe);
-			panierId = panierBean.addPanier(clientId);
-			 */
+			//int panierId = panierBean.addPanier();
+			/*clientBean.addClient(email, password, nom, prenom, adresse, d, sexe, panierId);
+			*/
+		    clientBean.addClient(email, password, nom, prenom, adresse, d, sexe);
+		     panierBean.addPanier(email);
+			 
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

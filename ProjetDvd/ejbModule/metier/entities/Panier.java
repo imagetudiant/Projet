@@ -13,30 +13,36 @@ import javax.persistence.*;
 public class Panier implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+
+	//@GeneratedValue(strategy=GenerationType.AUTO)
+	//private int id;
 
 	@Column(name="nb_produits")
 	private int nbProduits;
 	
-	/*
-	@Column(name="client_id")
-	private int clientId;
-	*/
+	@Id
+	@Column(name="client_email")
+	private String email;
+	
 
 	public Panier() {
 		nbProduits = 0;
 	}
+	
+	public Panier(String email) {
+		this.email = email;
+	}
+	
+	
 
-	public int getId() {
+	/*public int getId() {
 		return this.id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
 	}
-
+*/
 	public int getNbProduits() {
 		return this.nbProduits;
 	}
@@ -45,14 +51,14 @@ public class Panier implements Serializable {
 		this.nbProduits = nbProduits;
 	}
 	
-	/*
-	public int getClientId() {
-		return this.clientId;
+	
+	public String getemail() {
+		return this.email;
 	}
 
-	public void setClientId(int clientId) {
-		this.clientId = clientId;
+	public void setClientId(String email) {
+		this.email = email;
 	}
-	*/
+	
 
 }

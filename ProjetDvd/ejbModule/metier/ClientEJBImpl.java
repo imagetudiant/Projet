@@ -22,20 +22,20 @@ public class ClientEJBImpl implements ClientLocal, ClientRemote {
 		return c;
 	}
     
-	@Override 
 	
+	/*
 	public void addClient(String email, String password, String nom, String prenom, String adresse, Date date, String sexe, int panierId){
 		    Client c = new Client(email, password, nom, prenom, adresse, date, sexe, panierId);
 		    em.merge(c);		
-	}
+	}*/
 	
-	/*
-	public int addClient(String email, String password, String nom, String prenom, String adresse, Date date, String sexe){
-		    Client c = new Client(email, password, nom, prenom, adresse, date, sexe, panierId);
+	@Override
+	public void addClient(String email, String password, String nom, String prenom, String adresse, Date date, String sexe){
+		    Client c = new Client(email, password, nom, prenom, adresse, date, sexe);
 		    em.merge(c);
-		    return c.getId();		
+		   
 	}
-	 */
+	 
 	
 	@Override
 	public boolean IsClient(String email) {

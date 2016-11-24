@@ -47,11 +47,13 @@ public interface PanierRemote {
 	/**
 	 * Ajoute un panier à la base de données.
 	 */
-	public int addPanier();
 	
 	/*
-	public void addPanier(int clientId);
-	*/
+	public int addPanier();*/
+	
+	
+	public void addPanier(String email);
+	
 	
 
 }

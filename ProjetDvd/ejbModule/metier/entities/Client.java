@@ -29,8 +29,8 @@ public class Client implements Serializable {
 
 	private String nom;
 
-	@Column(name="panier_id")
-	private int panierId;
+	//@Column(name="panier_id")
+	//private int panierId;
 
 	private String prenom;
 
@@ -38,7 +38,7 @@ public class Client implements Serializable {
 
 	public Client() {
 	}
-	
+	/*
 	public Client(String email, String password, String nom, String prenom, String adresse, Date date, String sexe, int panierId){
 		this.email = email;
 		this.motDePasse = password;
@@ -49,8 +49,8 @@ public class Client implements Serializable {
 		this.sexe = sexe;
 		this.panierId = panierId;
 	}
+	*/
 	
-	/*
 	 	public Client(String email, String password, String nom, String prenom, String adresse, Date date, String sexe){
 		this.email = email;
 		this.motDePasse = password;
@@ -60,7 +60,7 @@ public class Client implements Serializable {
 		this.dateDeNaissance = date;
 		this.sexe = sexe;
 	}
-	 */
+	 
 
 	public String getEmail() {
 		return this.email;
@@ -101,14 +101,14 @@ public class Client implements Serializable {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-
-	public int getPanierId() {
+		
+	/*public int getPanierId() {
 		return this.panierId;
 	}
 
 	public void setPanierId(int panierId) {
 		this.panierId = panierId;
-	}
+	}*/
 
 	public String getPrenom() {
 		return this.prenom;

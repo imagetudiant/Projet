@@ -75,21 +75,21 @@ public class PanierEJBImpl implements PanierRemote, PanierLocal{
 		
 	}
 
-
+    /*
 	@Override
 	public int addPanier() {
 		Panier p = new Panier();
 		em.merge(p);
 		return p.getId();
-	}
+	}*/
 	
-	/*
+	
 	@Override
-	public void addPanier(int clientId) {
-		Panier p = new Panier(clientId);
+	public void addPanier(String email) {
+		Panier p = new Panier(email);
 		em.merge(p);
 	}
-	 */
+	 
 
 	
 }
