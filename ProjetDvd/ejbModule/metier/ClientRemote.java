@@ -9,6 +9,10 @@ import metier.entities.Client;
 @Remote
 public interface ClientRemote {
 	
+	public void login(String email);
+	
+	public void logout();
+	
 	public Client getClient(String email); 
 	
 	public boolean IsPassword(String password, String email);

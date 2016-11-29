@@ -7,15 +7,22 @@
 <title>Dvd Store - Profil</title>
 </head>
 <body>
-	<h1>Dvd Store</h1>
+	<jsp:include page="header.jsp"></jsp:include>
 	<h2>Votre profil</h2>
-	
-	<p>Nom : </p>
-	<p>Prénom : </p>
-	<p>Adresse e-mail : </p>
-	<p>Adresse : </p>
-	<p>Date de naissance : </p>
+	<%
+		String nom = (String) (request.getAttribute("nom"));
+		String prenom = (String) (request.getAttribute("prenom"));
+		String email = (String) (request.getAttribute("email"));
+		String adresse = (String) (request.getAttribute("adresse"));
+		String date = (String) (request.getAttribute("date"));
+	%> 	
+	<p>Nom : <%= nom %></p>
+	<p>Prénom : <%= prenom %></p>
+	<p>Adresse e-mail : <%= email %></p>
+	<p>Adresse : <%= adresse %></p>
+	<p>Date de naissance : <%= date %></p>
 	
 	<p><a href="accueil.jsp">Retour à l'accueil</a></p>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

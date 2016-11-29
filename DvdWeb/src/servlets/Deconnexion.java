@@ -2,7 +2,6 @@ package servlets;
 
 import java.io.IOException;
 
-import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,20 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 import metier.ClientLocal;
 
 /**
- * Servlet implementation class Connexion
+ * Servlet implementation class Deconnexion
  */
-@WebServlet("/Connexion")
-public class Connexion extends HttpServlet {
+@WebServlet("/Deconnexion")
+public class Deconnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	@EJB
-	private ClientLocal clientBean;
 	private static final String CLIENT_BEAN_SESSION_KEY = "client";
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Connexion() {
+    public Deconnexion() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,31 +31,30 @@ public class Connexion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		ClientLocal clientBean = (ClientLocal) request.getSession().getAttribute(CLIENT_BEAN_SESSION_KEY);
+		RequestDispatcher dispatcher;
+		if (clientBean != null) {
+			clientBean.logout();
+			request.getSession().setAttribute("connected", false);
+		    dispatcher = request.getRequestDispatcher("index.jsp");
+		    dispatcher.forward(request, response);
+		}
+		else {
+			String error = "Erreur lors de la déconnexion";
+			request.setAttribute("error", error);
+			dispatcher = request.getRequestDispatcher("erreur.jsp");
+			dispatcher.forward(request, response);	
+		}
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		if (email.isEmpty()) {
-			response.sendRedirect("connexion.jsp");
-		}
-		if (password.isEmpty()) {
-			response.sendRedirect("connexion.jsp");
-		}
-		boolean auth = clientBean.IsPassword(password, email);
-		if (auth) {			
-			clientBean.login(email);
-		    request.getSession().setAttribute(CLIENT_BEAN_SESSION_KEY, clientBean);
-		    request.getSession().setAttribute("connected", true);
-		    RequestDispatcher dispatcher = request.getRequestDispatcher("accueil.jsp");
-		    dispatcher.forward(request, response);
-		}
-		else {
-			response.sendRedirect("connexion.jsp");
-		}
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
+
 }

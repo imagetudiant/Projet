@@ -4,14 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>DVD Store - Erreur</title>
+<title>DvD Store - Erreur</title>
 </head>
 <body>
+	<jsp:include page="header.jsp"></jsp:include>
 	<h1>Erreur</h1>
 	<p>Une erreur est survenue lors du traitement de votre requête.</p>
 	<%
 		String error = (String) (request.getAttribute("error"));
 	%> 
 	<p><%= error %></p>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

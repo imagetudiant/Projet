@@ -1,13 +1,16 @@
 package metier;
 
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import javax.ejb.Stateful;
+import javax.ejb.StatefulTimeout;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import metier.entities.Client;
 
 
 @Stateful(name="Client")
+@StatefulTimeout(unit = TimeUnit.MINUTES, value = 30)
 public class ClientEJBImpl implements ClientLocal, ClientRemote {
 	
 	private String clientEmail;
@@ -16,7 +19,18 @@ public class ClientEJBImpl implements ClientLocal, ClientRemote {
 	private EntityManager em;
 	
 	@Override
+	public void login(String email) {
+		this.clientEmail = email;
+	}
+	
+	@Override
+	public void logout() {
+		this.clientEmail = null;
+	}
+	
+	@Override
 	public Client getClient(String email) {
+		if (email == null) throw new RuntimeException("email is null");
 		Client c = em.find(Client.class, email);
 		if(c == null) throw new RuntimeException("email error");
 		return c;

@@ -4,23 +4,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Accueil</title>
+<title>Dvd Store - Accueil</title>
 </head>
 <body>
-	<h1>Dvd Store</h1>
-	<p><a href="profil.jsp">Profil</a></p>
+	<jsp:include page="header.jsp"></jsp:include>	
 	<div>
 		<p><a href = "/DvdWeb/Dvd?action=list">Voir les dvds</a><p>
 		<p><a href = "/DvdWeb/Auteur?action=list">Voir les auteurs</a><p>
 		<p><a href = "/DvdWeb/Realisateur?action=list">Voir les réalisateurs</a><p>
 	</div>
-	<div>
-		<p>Rechercher un dvd<p>
-		<form action = "/DvdWeb/Dvd" method="get">
-  			<input type="text" name="titre" value="Titre">
-  			<input type="submit" value="Recherche">
-  			<input type="hidden" name="action" value="search"/>
-		</form> 
-	</div>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

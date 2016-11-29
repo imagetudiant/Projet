@@ -4,14 +4,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Liste des réalisateurs</title>
+<title>Dvd Store - Réalisateurs</title>
 </head>
 <body>
-<h1>Liste des réalisateurs</h1>
-<%
-String nom = (String) (request.getAttribute("nom"));
-String prenom = (String) (request.getAttribute("prenom"));
-%> 
-<div>Réalisateur 1 : <%= nom + " " + prenom %></div>
+	<jsp:include page="header.jsp"></jsp:include>
+	<h1>Liste des réalisateurs</h1>
+	<%
+		String nom = (String) (request.getAttribute("nom"));
+		String prenom = (String) (request.getAttribute("prenom"));
+	%> 
+	<div>Réalisateur 1 : <%= nom + " " + prenom %></div>
+	<p><a href="accueil.jsp">Retour à l'accueil</a></p>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

@@ -9,6 +9,10 @@ import metier.entities.Client;
 @Local
 public interface ClientLocal {
 	
+	public void login(String email);
+	
+	public void logout();
+	
 	public Client getClient(String email); 
 	
 	public boolean IsPassword(String password, String email);

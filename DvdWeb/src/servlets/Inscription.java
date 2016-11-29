@@ -165,6 +165,7 @@ public class Inscription extends HttpServlet {
 		}
 		
 		//Redirection vers l'accueil
+		clientBean.login(email);
 		response.sendRedirect("accueil.jsp");
 		
 	}

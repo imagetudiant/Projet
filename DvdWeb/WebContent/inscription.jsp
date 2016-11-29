@@ -29,6 +29,7 @@
 		<input type="password" name="password2" value=""><br/>
   		<input type="submit" value="Inscription">
   		<input type="reset">
-	</form> 
+	</form>
+	<jsp:include page="footer.jsp"></jsp:include> 
 </body>
 </html>

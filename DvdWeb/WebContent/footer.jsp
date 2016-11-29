@@ -4,16 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Dvd Store - Dvd</title>
+<title>Dvd Store - Footer</title>
 </head>
 <body>
-	<jsp:include page="header.jsp"></jsp:include>
-	<h1>Liste des dvd</h1>
-	<%
-		String titre = (String) (request.getAttribute("nom"));
-	%> 
-	<div>Dvd 1 : <%= titre %></div>	
-	<p><a href="accueil.jsp">Retour à l'accueil</a></p>
-	<jsp:include page="footer.jsp"></jsp:include>
+	<p>Dvd Store - bas de page</p>
 </body>
 </html>

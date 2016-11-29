@@ -14,6 +14,7 @@
 		Mot de passe <br/>
 		<input type="password" name="password" value=""><br/>
   		<input type="submit" value="Connexion">
-	</form> 
+	</form>
+	<jsp:include page="footer.jsp"></jsp:include> 
 </body>
 </html>
