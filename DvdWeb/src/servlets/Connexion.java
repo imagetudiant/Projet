@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import metier.ClientLocal;
+import metier.PanierLocal;
 
 /**
  * Servlet implementation class Connexion
@@ -21,7 +22,10 @@ public class Connexion extends HttpServlet {
 	
 	@EJB
 	private ClientLocal clientBean;
+	@EJB
+	private PanierLocal panierBean;
 	private static final String CLIENT_BEAN_SESSION_KEY = "client";
+	private static final String PANIER_BEAN_SESSION_KEY = "panier";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -53,7 +57,9 @@ public class Connexion extends HttpServlet {
 		boolean auth = clientBean.IsPassword(password, email);
 		if (auth) {			
 			clientBean.login(email);
+			panierBean.login(email);
 		    request.getSession().setAttribute(CLIENT_BEAN_SESSION_KEY, clientBean);
+		    request.getSession().setAttribute(PANIER_BEAN_SESSION_KEY, panierBean);
 		    request.getSession().setAttribute("connected", true);
 		    RequestDispatcher dispatcher = request.getRequestDispatcher("accueil.jsp");
 		    dispatcher.forward(request, response);

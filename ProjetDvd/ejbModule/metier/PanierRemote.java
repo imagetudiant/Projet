@@ -13,12 +13,11 @@ public interface PanierRemote {
 	
 	/**
 	 * 
-	 * renvoie la liste des relations qui lient Panier p et tous les 
-	 * dvds correspondants
-	 * @param p
+	 * renvoie la liste des dvds correspondant à un panier
+	 * @param email l'id du panier
 	 * @return list
 	 */
-	public List<PanierHasDvdPK> Consulter_Panier(Panier p);
+	public List<Dvd> Consulter_Panier();
 	/**
 	 * permet d'ajouter unn dvd Ã  un panier
 	 * @param p
@@ -42,7 +41,7 @@ public interface PanierRemote {
 	 * calcule la somme totale des prix des diffÃ©rents dvds dans un panier
 	 * @param p
 	 */
-	public void Somme_totale(Panier p);
+	public void Somme_totale();
 	
 	/**
 	 * Ajoute un panier à la base de données.
@@ -53,6 +52,10 @@ public interface PanierRemote {
 	
 	
 	public void addPanier(String email);
+	
+	public void login(String email);
+	
+	public void logout();
 	
 	
 

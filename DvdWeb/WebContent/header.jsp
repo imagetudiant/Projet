@@ -40,6 +40,7 @@
 			</form>
 		<%
 		}
-	%> 
+	%>
+	<a href="/DvdWeb/Panier?action=get">Panier</a>
 </body>
 </html>

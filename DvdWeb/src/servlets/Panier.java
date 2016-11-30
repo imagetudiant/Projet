@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,12 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import metier.ClientLocal;
 import metier.PanierLocal;
+import metier.entities.Dvd;
 
 /**
- * Servlet implementation class Deconnexion
+ * Servlet implementation class Panier
  */
-@WebServlet("/Deconnexion")
-public class Deconnexion extends HttpServlet {
+@WebServlet("/Panier")
+public class Panier extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String CLIENT_BEAN_SESSION_KEY = "client";
 	private static final String PANIER_BEAN_SESSION_KEY = "panier";
@@ -24,7 +26,7 @@ public class Deconnexion extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Deconnexion() {
+    public Panier() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,24 +35,28 @@ public class Deconnexion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		ClientLocal clientBean = (ClientLocal) request.getSession().getAttribute(CLIENT_BEAN_SESSION_KEY);
-		PanierLocal panierBean = (PanierLocal) request.getSession().getAttribute(PANIER_BEAN_SESSION_KEY);
-		RequestDispatcher dispatcher;
-		if (clientBean != null) {
-			clientBean.logout();
-			panierBean.logout();
-			request.getSession().setAttribute("connected", false);
-		    dispatcher = request.getRequestDispatcher("index.jsp");
-		    dispatcher.forward(request, response);
+		// TODO Auto-generated method stub
+		Object obj = request.getSession().getAttribute("connected");
+		ArrayList <Dvd> listDvd;
+		RequestDispatcher dispatcher = request.getRequestDispatcher("panier.jsp");
+		if (obj != null) {
+			boolean connected = (boolean) obj;
+			if (connected == true) {
+				ClientLocal clientBean = (ClientLocal) request.getSession().getAttribute(CLIENT_BEAN_SESSION_KEY);
+				PanierLocal panierBean = (PanierLocal) request.getSession().getAttribute(PANIER_BEAN_SESSION_KEY);
+				listDvd = (ArrayList<Dvd>) panierBean.Consulter_Panier();				
+			}
+			else {
+				listDvd = new ArrayList <Dvd> ();
+			}
+			request.setAttribute("dvds",listDvd);
+			dispatcher.forward(request, response);
 		}
 		else {
-			String error = "Erreur lors de la déconnexion";
-			request.setAttribute("error", error);
-			dispatcher = request.getRequestDispatcher("erreur.jsp");
-			dispatcher.forward(request, response);	
+			listDvd = new ArrayList <Dvd> ();
+			request.setAttribute("dvds",listDvd);
+			dispatcher.forward(request, response);
 		}
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

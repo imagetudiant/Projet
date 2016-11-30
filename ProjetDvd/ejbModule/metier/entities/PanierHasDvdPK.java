@@ -8,6 +8,7 @@ import javax.persistence.*;
  * 
  */
 @Embeddable
+@NamedQuery(name="PanierHasDvdPK.findAll", query="SELECT p FROM PanierHasDvdPK p")
 public class PanierHasDvdPK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
