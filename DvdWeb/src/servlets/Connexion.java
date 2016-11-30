@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import metier.ClientLocal;
 import metier.PanierLocal;
@@ -22,6 +23,8 @@ public class Connexion extends HttpServlet {
 	
 	@EJB
 	private ClientLocal clientBean;
+	
+	HttpSession session;
 	@EJB
 	private PanierLocal panierBean;
 	private static final String CLIENT_BEAN_SESSION_KEY = "client";
@@ -48,6 +51,7 @@ public class Connexion extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
+		session = request.getSession();
 		if (email.isEmpty()) {
 			response.sendRedirect("connexion.jsp");
 		}
@@ -59,7 +63,7 @@ public class Connexion extends HttpServlet {
 			clientBean.login(email);
 			panierBean.login(email);
 		    request.getSession().setAttribute(CLIENT_BEAN_SESSION_KEY, clientBean);
-		    request.getSession().setAttribute(PANIER_BEAN_SESSION_KEY, panierBean);
+		    session.setAttribute("panier",panierBean);
 		    request.getSession().setAttribute("connected", true);
 		    RequestDispatcher dispatcher = request.getRequestDispatcher("accueil.jsp");
 		    dispatcher.forward(request, response);
