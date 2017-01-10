@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import metier.ClientLocal;
+import metier.DvdLocal;
 import metier.PanierLocal;
 import metier.entities.Dvd;
 
@@ -22,6 +24,9 @@ public class Panier extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String CLIENT_BEAN_SESSION_KEY = "client";
 	private static final String PANIER_BEAN_SESSION_KEY = "panier";
+	
+	@EJB
+	private DvdLocal dvdBean;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -35,7 +40,8 @@ public class Panier extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		
 		Object obj = request.getSession().getAttribute("connected");
 		ArrayList <Dvd> listDvd;
 		RequestDispatcher dispatcher = request.getRequestDispatcher("panier.jsp");
@@ -64,7 +70,17 @@ public class Panier extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		String choix = request.getParameter("action");
+		RequestDispatcher dispatcher;
+		if(choix.equals("add")) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			Dvd d = dvdBean.getDvd(id);
+			PanierLocal panierBean = (PanierLocal) request.getSession().getAttribute(PANIER_BEAN_SESSION_KEY);
+			metier.entities.Panier p = panierBean.getPanier();
+			panierBean.Ajout_Dvd(p, d);
+			dispatcher = request.getRequestDispatcher("panier.jsp");
+			dispatcher.forward(request, response);
+		}
 	}
 
 }

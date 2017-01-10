@@ -33,6 +33,7 @@
 			}
 		}
 	%>
+	<p><a href="accueil.jsp">Retour à l'accueil</a></p>
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

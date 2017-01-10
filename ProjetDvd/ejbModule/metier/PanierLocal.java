@@ -12,6 +12,11 @@ import metier.entities.PanierHasDvdPK;
 public interface PanierLocal {
 	
 	
+	/**
+	 * Donne le panier correspondant à un email
+	 * @return un panier
+	 */
+	public Panier getPanier();
 	
 	/**
 	 * 

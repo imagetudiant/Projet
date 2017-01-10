@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,10 +10,14 @@
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<h1>Liste des dvd</h1>
-	<%
-		String titre = (String) (request.getAttribute("nom"));
-	%> 
-	<div>Dvd 1 : <%= titre %></div>	
+	<c:forEach var="dvd" items="${liste}">
+    	<c:out value="${dvd.titre}" />
+     	<c:out value="${dvd.prix}" />
+     	<form action="/DvdWeb/Panier?action=add&id=${dvd.id}" method="post">
+			<input type="submit" value="Ajouter au panier">
+		</form>
+     	<br/>
+	</c:forEach>	
 	<p><a href="accueil.jsp">Retour à l'accueil</a></p>
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>

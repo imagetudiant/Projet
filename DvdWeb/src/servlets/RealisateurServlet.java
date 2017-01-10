@@ -52,11 +52,9 @@ public class RealisateurServlet extends HttpServlet {
 		else if (choix.equals("list")) {
 			List <Realisateur> liste = realisateurBean.listRealisateur();
 			dispatcher = request.getRequestDispatcher("realisateur.jsp");
-			//request.setAttribute("liste", liste); 
 			if (liste != null) {
 				if (!liste.isEmpty()) {
-					request.setAttribute("nom", liste.get(0).getNom());
-					request.setAttribute("prenom", liste.get(0).getPrenom());
+					request.setAttribute("liste", liste); 
 				}
 			}
 		}

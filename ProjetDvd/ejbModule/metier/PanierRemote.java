@@ -11,6 +11,13 @@ import metier.entities.PanierHasDvdPK;
 @Remote 
 public interface PanierRemote {
 	
+	
+	/**
+	 * Donne le panier correspondant à un email
+	 * @return un panier
+	 */
+	public Panier getPanier();
+	
 	/**
 	 * 
 	 * renvoie la liste des dvds correspondant à un panier

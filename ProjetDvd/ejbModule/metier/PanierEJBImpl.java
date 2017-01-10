@@ -7,6 +7,7 @@ import java.util.List;
 
 import metier.entities.Dvd;
 import metier.entities.Panier;
+import metier.entities.PanierHasDvd;
 import metier.entities.PanierHasDvdPK;
 
 import javax.ejb.Stateful;
@@ -33,26 +34,34 @@ public class PanierEJBImpl implements PanierRemote, PanierLocal{
 	}
 	
 	@Override
+	public Panier getPanier() {
+		Panier p = em.find(Panier.class, email);
+		if(p==null) throw new RuntimeException("Panier introuvable");
+		return p;
+	}
+	
+	@Override
 	public List<Dvd> Consulter_Panier() {
 		List<Dvd> liste = new ArrayList <Dvd> ();
 		if (email == null) {
 			return liste;
 		}
 		else {
-		Query req =em.createNamedQuery("PanierHasDvdPK.findAll");
-		List<PanierHasDvdPK> result = new ArrayList<PanierHasDvdPK>();
+		Query req =em.createNamedQuery("PanierHasDvd.findAll");
+		List<PanierHasDvd> result = new ArrayList<PanierHasDvd>();
 		List<?> resultRaw = req.getResultList();
 		Iterator <?> it = resultRaw.iterator();
 		while (it.hasNext()) {
-			if(email.equals(((PanierHasDvdPK) it.next()).getPanierId())){
-				result.add((PanierHasDvdPK) it.next());
+			PanierHasDvd obj = (PanierHasDvd) it.next();
+			if(email.equals(obj.getId().getPanierId())){
+				result.add(obj);
 			}			
 		}
 		
 
-		Iterator <PanierHasDvdPK> it2 = result.iterator();
+		Iterator <PanierHasDvd> it2 = result.iterator();
 		while (it2.hasNext()) {
-			int dvdId = it2.next().getDvdId();
+			int dvdId = it2.next().getId().getDvdId();
 			Dvd d = em.find(Dvd.class, dvdId);
 			liste.add(d);
 		}
@@ -66,7 +75,11 @@ public class PanierEJBImpl implements PanierRemote, PanierLocal{
 		PanierHasDvdPK panier = new PanierHasDvdPK();
 		panier.setPanierId(p.getEmail());
 		panier.setDvdId(d.getId());
-		em.persist(panier);
+		/* 
+		 PanierHasDvd panDvd = new PanierHasDvd();
+		 panDvd.setId(panier);
+		 */
+		//em.persist(panier);  Pas le bon em. Pas d'ajout au panier
 	}
 
 	@Override

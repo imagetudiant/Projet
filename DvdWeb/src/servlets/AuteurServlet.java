@@ -52,11 +52,9 @@ public class AuteurServlet extends HttpServlet {
 		else if (choix.equals("list")) {
 			List <Auteur> liste = auteurBean.listAuteur();
 			dispatcher = request.getRequestDispatcher("auteur.jsp");
-			//request.setAttribute("liste", liste); 
 			if (liste != null) {
 				if (!liste.isEmpty()) {
-					request.setAttribute("nom", liste.get(0).getNom());
-					request.setAttribute("prenom", liste.get(0).getPrenom());
+					request.setAttribute("liste", liste); 
 				}
 			}
 		}
