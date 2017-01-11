@@ -72,14 +72,12 @@ public class PanierEJBImpl implements PanierRemote, PanierLocal{
 
 	@Override
 	public void Ajout_Dvd(Panier p, Dvd d) {
-		PanierHasDvdPK panier = new PanierHasDvdPK();
-		panier.setPanierId(p.getEmail());
-		panier.setDvdId(d.getId());
-		/* 
-		 PanierHasDvd panDvd = new PanierHasDvd();
-		 panDvd.setId(panier);
-		 */
-		//em.persist(panier);  Pas le bon em. Pas d'ajout au panier
+		PanierHasDvdPK panDvdPK = new PanierHasDvdPK();
+		panDvdPK.setPanierId(p.getEmail());
+		panDvdPK.setDvdId(d.getId()); 
+		PanierHasDvd panDvd = new PanierHasDvd();
+		panDvd.setId(panDvdPK);
+		em.persist(panDvd);
 	}
 
 	@Override

@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.Iterator"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="java.math.BigDecimal"%>
-<%@page import="metier.entities.Dvd"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,26 +11,19 @@
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<h2>Votre panier</h2>
-	<%
-		Object listeObj = request.getAttribute("dvds");
-		if (listeObj != null) {
-			ArrayList <Dvd> liste = (ArrayList <Dvd>) listeObj;
-			if (!liste.isEmpty()) {
-				Iterator <Dvd> it = liste.iterator();
-				while (it.hasNext()) {
-					Dvd d = it.next();
-					String titre = d.getTitre();
-					String prix = d.getPrix().toString();
-					%>
-					<div>
-						Titre : <%= titre %>
-						Prix : <%= prix %>
-					</div>
-					<%
-				}
-			}
-		}
-	%>
+	<c:forEach var="dvd" items="${dvds}">
+    	<c:out value="${dvd.titre}" />
+     	<c:out value="${dvd.prix}" />
+     	<form action="/DvdWeb/Panier?action=remove&id=${dvd.id}" method="post">
+			<input type="submit" value="Enlever">
+		</form>
+     	<br/>
+	</c:forEach>
+	<c:if test="${not empty dvds}">
+		<form action="/DvdWeb/Panier?action=validate" method="post">
+			<input type="submit" value="Valider mon panier">
+		</form>
+	</c:if>
 	<p><a href="accueil.jsp">Retour à l'accueil</a></p>
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
