@@ -81,11 +81,17 @@ public class PanierEJBImpl implements PanierRemote, PanierLocal{
 	}
 
 	@Override
-	public void Supprimer_Dvd(PanierHasDvdPK p, Dvd d) {
-		int id = p.getDvdId();
-		if (id == d.getId()){
-				em.remove(d);
-			}
+	public void supprimerDvd(Panier p, Dvd d) {
+		Query req =em.createNamedQuery("PanierHasDvd.findAll");
+		List<?> resultRaw = req.getResultList();
+		Iterator <?> it = resultRaw.iterator();
+		while (it.hasNext()) {
+			PanierHasDvd obj = (PanierHasDvd) it.next();
+			if(p.getEmail().equals(obj.getId().getPanierId()) && d.getId() == obj.getId().getDvdId()){
+				em.remove(obj);
+				return;
+			}			
+		}		
 	}
 
 	@Override

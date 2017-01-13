@@ -36,7 +36,7 @@ public interface PanierLocal {
 	 * @param p
 	 * @param d
 	 */
-	public void Supprimer_Dvd(PanierHasDvdPK p, Dvd d);
+	public void supprimerDvd(Panier p, Dvd d);
 	/**
 	 * permet de fixer la quantité d'un dvd dans un panier 
 	 * @param p

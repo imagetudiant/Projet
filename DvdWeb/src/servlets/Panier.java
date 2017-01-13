@@ -78,16 +78,15 @@ public class Panier extends HttpServlet {
 			PanierLocal panierBean = (PanierLocal) request.getSession().getAttribute(PANIER_BEAN_SESSION_KEY);
 			metier.entities.Panier p = panierBean.getPanier();
 			panierBean.Ajout_Dvd(p, d);
-			dispatcher = request.getRequestDispatcher("panier.jsp");
-			dispatcher.forward(request, response);
+			doGet(request,response);
 		}
 		else if (choix.equals("remove")) {
 			int id = Integer.parseInt(request.getParameter("id"));
 			Dvd d = dvdBean.getDvd(id);
 			PanierLocal panierBean = (PanierLocal) request.getSession().getAttribute(PANIER_BEAN_SESSION_KEY);
-			//panierBean.supprimerDvd(d);
-			dispatcher = request.getRequestDispatcher("panier.jsp");
-			dispatcher.forward(request, response);
+			metier.entities.Panier p = panierBean.getPanier();
+			panierBean.supprimerDvd(p,d);
+			doGet(request,response);
 		}
 		else if (choix.equals("validate")) {
 			PanierLocal panierBean = (PanierLocal) request.getSession().getAttribute(PANIER_BEAN_SESSION_KEY);

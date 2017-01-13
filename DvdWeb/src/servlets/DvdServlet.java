@@ -43,20 +43,12 @@ public class DvdServlet extends HttpServlet {
 			String titre = request.getParameter("titre");
 			List <Dvd> liste = dvdBean.searchDvd(titre);
 			dispatcher = request.getRequestDispatcher("dvd.jsp");
-			if (liste != null) {
-				if (!liste.isEmpty()) {
-					request.setAttribute("titre", liste.get(0).getTitre());
-				}
-			}
+			request.setAttribute("liste", liste);
 		}
 		else if (choix.equals("list")) {
 			List <Dvd> liste = dvdBean.listDvd();
 			dispatcher = request.getRequestDispatcher("dvd.jsp");			
-			if (liste != null) {
-				if (!liste.isEmpty()) {
-					request.setAttribute("liste", liste); 
-				}
-			}
+			request.setAttribute("liste", liste); 
 		}
 		else {
 			return;
