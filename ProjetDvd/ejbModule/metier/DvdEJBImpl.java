@@ -45,15 +45,24 @@ public class DvdEJBImpl implements DvdLocal, DvdRemote {
 		return result;
 		}
 	
-	public List<Dvd> searchDvd(String titreRech) {
+	public List<Dvd> searchDvd(String stringRech) {
 		List<Dvd> result = new ArrayList<Dvd>();
-		if(titreRech == null) throw new RuntimeException("ERROR");
-		if(titreRech == "") return result;
+		if(stringRech == null) throw new RuntimeException("ERROR");
+		if(stringRech == "") return result;
+		String[] motsRech = stringRech.split(" ");
 		List<Dvd> list = listDvd();
 		Iterator<Dvd> it = list.iterator();
 		while(it.hasNext()){
 			Dvd d = it.next();
-			if(d.getTitre().equals(titreRech)) {
+			Boolean isInDatabase = true; // vrai si tous les mots de la string recherchée sont contenus dans le titre ou l'auteur ou le réalisateur
+			for (int i = 0; i < motsRech.length; i++) {
+				if (!(
+						d.getTitre() + " " + d.getAuteur().getFullName() + " " + d.getRealisateur().getFullName()
+					).toLowerCase().contains(motsRech[i].toLowerCase())) {
+						isInDatabase = false; // si un des mots de la string est absent, on n'affiche pas le dvd
+				}
+			} // Par exemple, pour Titanic, "cameron titanic james", "tiTaNiC Jam" et "ero tita" feront tous apparaître le Dvd de Titanic dans la liste
+			if(isInDatabase) {
 				result.add(d);
 			}
 			
