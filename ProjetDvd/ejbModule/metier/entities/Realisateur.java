@@ -53,4 +53,8 @@ public class Realisateur implements Serializable {
 		this.prenom = prenom;
 	}
 
+	public String getFullName() {
+		return this.prenom + " " + this.nom;
+	}
+
 }

@@ -55,4 +55,8 @@ public class Auteur implements Serializable {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
+
+	public String getFullName() {
+		return this.prenom + " " + this.nom;
+	}
 }
